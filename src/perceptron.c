@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/perceptron.h"
+#include "perceptron.h"
 
 /*
     Alloue dynamiquemennt et initialise un perceptron avce des poids et un biais a 0

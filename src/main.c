@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/perceptron.h"
-#include "../include/dataset.h"
+#include "perceptron.h"
+#include "dataset.h"
 
 int main() {
     printf("Début du main\n");
@@ -15,7 +15,7 @@ int main() {
     printf("Perceptron créé avec succès.\n");
 
     /* Test création dataset */
-    dataset *ds = chargerDataset("../data/et.csv");
+    dataset *ds = chargerDataset("data/et.csv");
     printf("n = %d | dim = %d \n", ds->n, ds->dim);
     for(int i =0; i<(ds->n); i++){
         for(int j =0; j<(ds->dim); j++){

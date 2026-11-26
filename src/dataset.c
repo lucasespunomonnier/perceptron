@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../include/dataset.h"
+#include "dataset.h"
 
 dataset *creaDataset(int n, int dim) {
     dataset *d = malloc(sizeof(dataset));
@@ -110,10 +110,14 @@ dataset *chargerDataset(char *path){
         }
         char *tok = strtok(ligne, ",\r\n");
         for(int j =0; j<dim; j++){
-            d->caracteristique[i][j] = atof(tok);
-            tok = strtok(NULL, ",\r\n");
+            if(tok != NULL){
+                d->caracteristique[i][j] = atof(tok);
+                tok = strtok(NULL, ",\r\n");
+            }
         }
-        d->labels[i] = atoi(tok);
+        if(tok != NULL){
+            d->labels[i] = atoi(tok);
+        }
         i++;
     }
     fclose(fd);
