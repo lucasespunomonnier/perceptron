@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "perceptron.h"
 
 /*
@@ -44,4 +45,19 @@ void libePerceptron(perceptron *p){
         }
     }
     free(p);
+}
+
+double activationsigmoide(int z){
+    double sig;
+    sig = 1/(1+exp(-z));
+    return sig;
+}
+
+double prediction(perceptron *p, double *x){
+    float somme = 0.0;
+    for(int i=0; i<p->dimEntree; i++){
+        somme += p->vectPoids[i] * x[i];
+    }
+    float z = somme + p->biais;
+    return activationsigmoide(z);
 }

@@ -1,5 +1,5 @@
 perceptron: src/dataset.o src/main.o src/perceptron.o
-	gcc src/dataset.o src/main.o src/perceptron.o -o perceptron -Wall -Wextra -g 
+	gcc src/dataset.o src/main.o src/perceptron.o -o perceptron -Wall -Wextra -g -lm
 
 src/main.o: src/main.c include/dataset.h include/perceptron.h
 	gcc -c src/main.c -o src/main.o -Iinclude -Wall -Wextra -g 

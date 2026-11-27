@@ -6,7 +6,6 @@
 int main() {
     printf("Début du main\n");
     
-    /* Test création perceptron */
     perceptron *p = creaPerceptron(2, 0.1);
     if (p == NULL) {
         fprintf(stderr, "Erreur d'allocation du perceptron.\n");
@@ -14,8 +13,7 @@ int main() {
     }
     printf("Perceptron créé avec succès.\n");
 
-    /* Test création dataset */
-    dataset *ds = chargerDataset("data/et.csv");
+    dataset *ds = chargerDataset("data/champignons.csv");
     printf("n = %d | dim = %d \n", ds->n, ds->dim);
     for(int i =0; i<(ds->n); i++){
         for(int j =0; j<(ds->dim); j++){
@@ -26,9 +24,10 @@ int main() {
     libeDataset(ds);
 
 
-    /* Libération de la mémoire pour éviter les fuites */
     libePerceptron(p);
     
+    printf("%f", activationsigmoide(5));
+
     printf("Fin du main, mémoire libérée.\n");
     return EXIT_SUCCESS;
 }

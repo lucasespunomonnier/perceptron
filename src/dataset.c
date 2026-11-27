@@ -10,14 +10,12 @@ dataset *creaDataset(int n, int dim) {
     d->n = n;
     d->dim = dim;
 
-    /* Allocation du tableau de labels */
     d->labels = malloc(n * sizeof(int));
     if (d->labels == NULL){
         free(d);
         return NULL;
     }
 
-    /* Allocation du tableau 2D de caractéristiques */
     d->caracteristique = malloc(n * sizeof(double *));
     if (d->caracteristique == NULL) {
         free(d->labels);
@@ -25,11 +23,9 @@ dataset *creaDataset(int n, int dim) {
         return NULL;
     }
 
-    /* Allocation de chaque ligne et initialisation à zéro */
     for (int i = 0; i < n; i++) {
         d->caracteristique[i] = malloc(dim * sizeof(double));
         if (d->caracteristique[i] == NULL) {
-            /* En cas d'échec, libérer tout ce qui a été alloué précédemment */
             for (int j = 0; j < i; j++) {
                 free(d->caracteristique[j]);
             }
@@ -76,7 +72,7 @@ dataset *chargerDataset(char *path){
     int nb_col = 0;
 
     while(fgets(ligne, sizeof(ligne), fd) != NULL){
-        if(ligne[0] == '\n' || ligne[0] == '\r'){
+        if(ligne[0] == NULL){
             continue;
         }
 
@@ -105,14 +101,14 @@ dataset *chargerDataset(char *path){
     int i = 0;
 
     while(i < n && fgets(ligne, sizeof(ligne), fd) != NULL){
-        if(ligne[0] == '\n' || ligne[0] == '\r'){
+        if(ligne[0] == NULL){
             continue;
         }
-        char *tok = strtok(ligne, ",\r\n");
+        char *tok = strtok(ligne, ",");
         for(int j =0; j<dim; j++){
             if(tok != NULL){
                 d->caracteristique[i][j] = atof(tok);
-                tok = strtok(NULL, ",\r\n");
+                tok = strtok(NULL, ",");
             }
         }
         if(tok != NULL){

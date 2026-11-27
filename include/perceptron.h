@@ -10,4 +10,6 @@ typedef struct perceptron_s{
 
 perceptron *creaPerceptron(int dimin, double taux);
 void libePerceptron(perceptron *p);
+double activationsigmoide(int z);
+double prediction(perceptron *p, double *x);
 #endif
